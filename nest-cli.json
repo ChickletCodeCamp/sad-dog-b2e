@@ -3,6 +3,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "clock": {
+      "type": "library",
+      "root": "libs/clock",
+      "entryFile": "index",
+      "sourceRoot": "libs/clock/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/clock/tsconfig.lib.json"
+      }
+    }
   }
 }
