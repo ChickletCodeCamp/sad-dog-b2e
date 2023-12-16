@@ -29,8 +29,8 @@ export class UserEntity {
     @Column({ type: 'varchar', length: 10, name: 'sex' })
     sex: string;
 
-    @Column({ type: 'varchar', length: 10, name: 'age' })
-    age: string;
+    @Column({ type: 'int', name: 'age' })
+    age: number;
 
     @Column({ type: 'boolean', name: 'is_email_check' })
     isEmailCheck: boolean;

@@ -12,6 +12,8 @@
   },
   "moduleNameMapper": {
     "@app/clock/(.*)": "<rootDir>/../libs/clock/src/$1",
-    "@app/clock": "<rootDir>/../libs/clock/src"
+    "@app/clock": "<rootDir>/../libs/clock/src",
+    "@app/uuid/(.*)": "<rootDir>/../libs/uuid/src/$1",
+    "@app/uuid": "<rootDir>/../libs/uuid/src"
   }
 }

@@ -21,12 +21,12 @@ export interface UserRepositoryInterface {
      * @param id  user Id
      * @param updateId 更新者Id
      */
-    update(data: UserEntity, updateId: string): Promise<UserEntity>;
+    update(data: UserEntity): Promise<UserEntity>;
 
     /**
      * 驅除鎮民
      * @param id  user Id
      * @param updateId 更新者Id
      */
-    delete(id: string, updateId: string): Promise<UserEntity>;
+    delete(id: string): Promise<UserEntity>;
 }

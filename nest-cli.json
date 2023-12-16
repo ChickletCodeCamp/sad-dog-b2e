@@ -15,6 +15,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/clock/tsconfig.lib.json"
       }
+    },
+    "uuid": {
+      "type": "library",
+      "root": "libs/uuid",
+      "entryFile": "index",
+      "sourceRoot": "libs/uuid/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/uuid/tsconfig.lib.json"
+      }
     }
   }
 }

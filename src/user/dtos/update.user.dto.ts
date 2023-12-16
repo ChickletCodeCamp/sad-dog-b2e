@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { SexType } from '../enums';
 
 export class UpdateUserDto {
     @ApiProperty({
@@ -28,4 +29,15 @@ export class UpdateUserDto {
         maxLength: 50
     })
     userName: string;
+
+    @ApiProperty({
+        description: '性別(男或女)',
+        enum: ['Boy', 'Girl']
+    })
+    sex: SexType;
+
+    @ApiProperty({
+        description: '年齡',
+    })
+    age: number;
 }
