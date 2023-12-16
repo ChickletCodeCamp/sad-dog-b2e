@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  nest-app:
+    container_name: sad-dog-api
+    build:
+      context: .
+      dockerfile: .dockerfile
+    ports:
+      - "3055:3055"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: SadDog
+
+  postgres:
+    container_name: postgres12
+    image: postgres:12.3
+    environment:
+      POSTGRES_PASSWORD: test123
+    ports:
+      - "5432:5432"
