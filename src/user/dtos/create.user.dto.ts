@@ -18,9 +18,8 @@ export class CreateUserDto {
 
     @ApiProperty({
         description: '電話號碼(非必填)',
-        type: Number,
     })
-    phoneNumber: number;
+    phoneNumber: string;
 
     @ApiProperty({
         description: '使用者名稱',

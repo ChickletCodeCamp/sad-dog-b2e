@@ -17,10 +17,9 @@ export class UserDto {
     email: string;
 
     @ApiProperty({
-        description: '電話號碼',
-        type: Number,
+        description: '電話號碼(非必填)',
     })
-    phoneNumber: number;
+    phoneNumber: string;
 
     @ApiProperty({
         description: '使用者名稱',

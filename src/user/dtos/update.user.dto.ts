@@ -4,7 +4,7 @@ export class UpdateUserDto {
     @ApiProperty({
         description: 'user id',
     })
-    id: string;
+    userId: string;
 
     @ApiProperty({
         description: '使用者全名',
@@ -18,9 +18,8 @@ export class UpdateUserDto {
 
     @ApiProperty({
         description: '電話號碼(非必填)',
-        type: Number,
     })
-    phoneNumber: number;
+    phoneNumber: string;
 
     @ApiProperty({
         description: '使用者名稱',
