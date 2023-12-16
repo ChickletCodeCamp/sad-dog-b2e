@@ -23,6 +23,12 @@
       ],
       "@app/clock/*": [
         "libs/clock/src/*"
+      ],
+      "@app/uuid": [
+        "libs/uuid/src"
+      ],
+      "@app/uuid/*": [
+        "libs/uuid/src/*"
       ]
     }
   }

@@ -5,7 +5,8 @@ import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { ClockModule } from '@app/clock';
+import { UuidModule } from '@app/uuid/uuid.module';
+import { ClockModule } from '@app/clock/clock.module';
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { ClockModule } from '@app/clock';
       inject: [ConfigService],
     }),
     UserModule,
-    ClockModule
+    ClockModule,
+    UuidModule,
   ],
   controllers: [AppController],
   providers: [AppService],

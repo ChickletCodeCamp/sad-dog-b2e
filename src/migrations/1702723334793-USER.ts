@@ -46,8 +46,7 @@ export class USER1702723334793 implements MigrationInterface {
                 },
                 {
                     name: "age",
-                    type: "varchar",
-                    length: "10",
+                    type: "int",
                 },
                 {
                     name: "is_email_check",
