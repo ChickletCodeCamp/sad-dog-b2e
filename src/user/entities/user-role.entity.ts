@@ -2,7 +2,7 @@ import { Entity, Column, Unique } from 'typeorm';
 
 @Entity({ schema: 'public', name: 'user_role' })
 @Unique('UNIQ_RoleUser', ['roleId', 'userId'])
-export class UserRole {
+export class UserRoleEntity {
     @Column('uuid', { name: 'roleId', primary: true, generated: 'uuid' })
     roleId: string;
 
