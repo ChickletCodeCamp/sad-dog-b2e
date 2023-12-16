@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity({ schema: 'public', name: 'users' })
-export class User {
+export class UserEntity {
     @PrimaryGeneratedColumn('uuid', { name: 'userId' })
     userId: string;
 

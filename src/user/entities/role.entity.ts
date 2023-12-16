@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ schema: 'public', name: 'roles' })
-export class Role {
+export class RoleEntity {
     @PrimaryGeneratedColumn('uuid', { name: 'roleId' })
     roleId: string;
 
