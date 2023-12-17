@@ -21,12 +21,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate({ userId }: TokenPayload) {
-    try {
-      const user = await this.authService.getUserById(userId);
-      return user;
-    } catch (err) {
-      throw new UnauthorizedException();
-    }
-  }
+  // async validate({ userId }: TokenPayload) {
+  //   try {
+  //     const user = await this.authService.getUserById(userId);
+  //     return user;
+  //   } catch (err) {
+  //     throw new UnauthorizedException();
+  //   }
+  // }
 }
