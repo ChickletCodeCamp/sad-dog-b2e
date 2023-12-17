@@ -14,7 +14,7 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test123
-      POSTGRES_DB: SadDog
+      POSTGRES_DB: postgres
 
   postgres:
     container_name: postgres12
@@ -23,3 +23,17 @@ services:
       POSTGRES_PASSWORD: test123
     ports:
       - "5432:5432"
+
+  migration:
+    container_name: sad-dog-migration
+    build:
+      context: .
+      dockerfile: .dockerfile.migration
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: postgres
