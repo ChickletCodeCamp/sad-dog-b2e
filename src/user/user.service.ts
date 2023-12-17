@@ -70,7 +70,7 @@ export class UserService implements UserServiceInterface {
             ban: false,
             createTime: d,
             updateTime: d,
-            updateUserId: 'f7541155-a4ff-4ca2-bfc5-a82ad98e2e86',
+            updateUserId: userId,
             userId: await this.uuidService.getUUID()
         });
 
@@ -107,7 +107,7 @@ export class UserService implements UserServiceInterface {
             sex: oldUser.sex,
             age: oldUser.age,
             updateTime: d,
-            updateUserId: 'f7541155-a4ff-4ca2-bfc5-a82ad98e2e86',
+            updateUserId: userId,
             userId: id,
             password: null,
             isEmailCheck: null,

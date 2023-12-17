@@ -7,8 +7,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { UuidModule } from '@app/uuid/uuid.module';
 import { ClockModule } from '@app/clock/clock.module';
-import { LoginModule } from './login/login.module';
 import { BcryptModule } from '@app/bcrypt/bcrypt.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -43,8 +43,8 @@ import { BcryptModule } from '@app/bcrypt/bcrypt.module';
     UserModule,
     ClockModule,
     UuidModule,
-    LoginModule,
-    BcryptModule
+    BcryptModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

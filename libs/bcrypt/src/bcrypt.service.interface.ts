@@ -1,4 +1,4 @@
-export interface BcryptService {
+export interface BcryptServiceInterface {
 
   /**雜湊密碼
    * 
