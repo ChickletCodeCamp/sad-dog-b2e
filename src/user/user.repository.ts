@@ -88,14 +88,14 @@ export class UserRepository implements UserRepositoryInterface {
             await transactionalEntityManager.getRepository(UserRoleEntity)
                 .createQueryBuilder(this.userRoleSchema.tableName)
                 .delete() // 刪除資料
-                .where(this.userRoleSchema.tableName + '.userId = :userId', { userId: id }) // 指定更新條件                
+                .where(this.userRoleSchema.tableName + '."userId" = :userId', { userId: id }) // 指定更新條件                
                 .execute(); // 執行操作並獲取結果
 
             // delete user
             const delUser = await transactionalEntityManager.getRepository(UserEntity)
                 .createQueryBuilder()
                 .delete() // 刪除資料
-                .where(this.userRoleSchema.tableName + '.userId = :userId', { userId: id }) // 指定更新條件
+                .where(this.userRoleSchema.tableName + '."userId" = :userId', { userId: id }) // 指定更新條件
                 .returning(this.userSchema.schema)
                 .execute()
                 .then(result => result.raw[0] as UserEntity);
