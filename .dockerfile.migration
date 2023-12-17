@@ -4,17 +4,19 @@ FROM node:alpine AS development
 # 设置工作目录
 WORKDIR /usr/src/app
 
+# 复制 TypeORM 迁移脚本和配置文件
+COPY . .
+
+
 # 安装 pnpm
 RUN npm i -g pnpm ts-node
 
 # 复制 package.json 和 pnpm-lock.yaml
-COPY package.json pnpm-lock.yaml ./
+# COPY package.json pnpm-lock.yaml ./
 
 # 安装依赖
 RUN pnpm install --prod
 
-# 复制 TypeORM 迁移脚本和配置文件
-COPY ./src/typeorm.migration.ts ./src/
 
 # 迁移命令（这里假设您使用的是 npm 脚本）
 CMD ["pnpm", "run", "typeorm:run-migrations"]

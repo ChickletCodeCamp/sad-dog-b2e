@@ -10,15 +10,19 @@ services:
     depends_on:
       - postgres
     environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test123
-      POSTGRES_DB: postgres
+      DB_URI: ppostgresql://postgres:test123@postgres:5432/postgres
+      IS_DB_SSL_MODE: false
+      JWT_SECRET: my-32-character-ultra-secure-and-ultra-long-secret
+      JWT_EXPIRATION: 60
 
   postgres:
     container_name: postgres12
     image: postgres:12.3
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
       POSTGRES_PASSWORD: test123
     ports:
@@ -30,10 +34,9 @@ services:
       context: .
       dockerfile: .dockerfile.migration
     depends_on:
-      - postgres
+      #- postgres
+      postgres:
+        condition: service_healthy
     environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test123
-      POSTGRES_DB: postgres
+      DB_URI: ppostgresql://postgres:test123@postgres:5432/postgres?sslmode=disable
+      IS_DB_SSL_MODE: false

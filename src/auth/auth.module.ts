@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { JwtStrategy, LocalStrategy } from './strategies';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -30,8 +29,6 @@ import { AuthRepository } from './auth.repository';
       provide: 'AuthRepositoryInterface',
       useClass: AuthRepository,
     },
-    LocalStrategy,
-    JwtStrategy
   ],
   controllers: [AuthController],
 })

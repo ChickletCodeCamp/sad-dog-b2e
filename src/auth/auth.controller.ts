@@ -2,7 +2,6 @@ import { Body, Controller, Get, Inject, Post, Res, UseGuards } from '@nestjs/com
 import { Response } from 'express';
 import { AuthServiceInterface } from './interfaces';
 import { UserDto } from './dtos';
-import { JwtAuthGuard, LocalAuthGuard } from './guards';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('auth')
@@ -14,7 +13,6 @@ export class AuthController {
     ) { }
 
     @ApiBody({ type: UserDto })
-    // @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(
         @Body() user: UserDto,
