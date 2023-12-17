@@ -14,6 +14,8 @@
     "@app/clock/(.*)": "<rootDir>/../libs/clock/src/$1",
     "@app/clock": "<rootDir>/../libs/clock/src",
     "@app/uuid/(.*)": "<rootDir>/../libs/uuid/src/$1",
-    "@app/uuid": "<rootDir>/../libs/uuid/src"
+    "@app/uuid": "<rootDir>/../libs/uuid/src",
+    "@app/bcrypt/(.*)": "<rootDir>/../libs/bcrypt/src/$1",
+    "@app/bcrypt": "<rootDir>/../libs/bcrypt/src"
   }
 }

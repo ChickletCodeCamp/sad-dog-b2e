@@ -35,6 +35,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^7.1.12",
     "@nestjs/typeorm": "^10.0.1",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "joi": "^17.11.0",
     "pg": "^8.11.3",
@@ -88,7 +90,8 @@
     ],
     "moduleNameMapper": {
       "^@app/clock(|/.*)$": "<rootDir>/libs/clock/src/$1",
-      "^@app/uuid(|/.*)$": "<rootDir>/libs/uuid/src/$1"
+      "^@app/uuid(|/.*)$": "<rootDir>/libs/uuid/src/$1",
+      "^@app/bcrypt(|/.*)$": "<rootDir>/libs/bcrypt/src/$1"
     }
   }
 }

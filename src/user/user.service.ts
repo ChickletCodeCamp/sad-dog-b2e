@@ -6,6 +6,7 @@ import { ClockServiceInterface } from '@app/clock';
 import { UserEntity } from './entities';
 import { SexType } from './enums';
 import { UUIDServiceInterface } from '@app/uuid';
+import { BcryptServiceInterface } from '@app/bcrypt';
 
 @Injectable()
 export class UserService implements UserServiceInterface {
@@ -16,7 +17,9 @@ export class UserService implements UserServiceInterface {
         @Inject('ClockServiceInterface')
         private readonly clockService: ClockServiceInterface,
         @Inject('UUIDServiceInterface')
-        private readonly uuidService: UUIDServiceInterface
+        private readonly uuidService: UUIDServiceInterface,
+        @Inject('BcryptServiceInterface')
+        private readonly bcryptService: BcryptServiceInterface
     ) { }
 
     /** 使用 user id 查詢使用者
@@ -53,10 +56,12 @@ export class UserService implements UserServiceInterface {
 
         const d = new Date(this.clockService.getDateTime());
 
+        const hashedPassword = this.bcryptService.genHash(newUser.password);
+
         const createUser: UserEntity = await this.userRepo.create({
             fullName: newUser.fullName,
             email: newUser.email,
-            password: newUser.password,
+            password: hashedPassword,
             phoneNumber: newUser.phoneNumber,
             userName: newUser.userName,
             sex: newUser.sex,

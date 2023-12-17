@@ -4,11 +4,12 @@ import { DataSource } from 'typeorm';
 
 config();
 const configService = new ConfigService();
-const IS_DB_SSL_MODE = configService.getOrThrow<boolean>(
-    'IS_DB_SSL_MODE',
-    false,
-);
-//const IS_DB_SSL_MODE = true;
+const IS_DB_SSL_MODE = false;
+// const IS_DB_SSL_MODE = configService.getOrThrow<boolean>(
+//     'IS_DB_SSL_MODE',
+//     false,
+// );
+
 export default new DataSource({
     type: 'postgres',
     url: configService.get<string>('DB_URI', ''),

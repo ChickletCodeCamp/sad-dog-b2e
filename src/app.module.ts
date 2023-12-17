@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { UuidModule } from '@app/uuid/uuid.module';
 import { ClockModule } from '@app/clock/clock.module';
+import { LoginModule } from './login/login.module';
+import { BcryptModule } from '@app/bcrypt/bcrypt.module';
 
 @Module({
   imports: [
@@ -41,6 +43,8 @@ import { ClockModule } from '@app/clock/clock.module';
     UserModule,
     ClockModule,
     UuidModule,
+    LoginModule,
+    BcryptModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -29,6 +29,12 @@
       ],
       "@app/uuid/*": [
         "libs/uuid/src/*"
+      ],
+      "@app/bcrypt": [
+        "libs/bcrypt/src"
+      ],
+      "@app/bcrypt/*": [
+        "libs/bcrypt/src/*"
       ]
     }
   }
