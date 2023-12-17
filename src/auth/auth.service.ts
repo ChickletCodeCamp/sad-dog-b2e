@@ -6,6 +6,7 @@ import { UserDto, GetUserDto } from './dtos';
 import { ConfigService } from '@nestjs/config';
 import { BcryptServiceInterface } from '@app/bcrypt';
 import { UserEntity } from 'src/user/entities';
+import { ClockServiceInterface } from '@app/clock';
 
 @Injectable()
 export class AuthService implements AuthServiceInterface {
@@ -16,7 +17,9 @@ export class AuthService implements AuthServiceInterface {
         @Inject('AuthRepositoryInterface')
         private readonly authRepo: AuthRepositoryInterface,
         @Inject('BcryptServiceInterface')
-        private readonly bcryptService: BcryptServiceInterface
+        private readonly bcryptService: BcryptServiceInterface,
+        @Inject('ClockServiceInterface')
+        private readonly clockService: ClockServiceInterface,
     ) { }
 
     /**驗證使用者
@@ -24,9 +27,9 @@ export class AuthService implements AuthServiceInterface {
      * @param user 帳號密碼 
      * @returns 使用者id
      */
-    private async verifyUser(user: UserDto): Promise<string> {
+    private async verifyUser(user: UserDto): Promise<UserEntity> {
         // 查詢使用者
-        const dbUser = await this.authRepo.getUserByEmail(user.email);
+        const dbUser: UserEntity = await this.authRepo.getUserByEmail(user.email);
 
         // 檢查使用者是否存在
         if (!dbUser) {
@@ -41,30 +44,35 @@ export class AuthService implements AuthServiceInterface {
             throw new UnauthorizedException('Invalid credentials');
         }
 
-        return dbUser.userId;
+        return dbUser;
     }
 
-    private genToken(id: string): string {
+    private async genToken(id: string, name: string): Promise<string> {
+
+        const roles: string[] = await this.authRepo.getRolesByUserId(id);
+
         // 密碼正確，開始產生 Token
         const tokenPayload: TokenPayload = {
             userId: id,
+            user: name,
+            roles: roles
         };
 
-        return this.jwtService.sign(tokenPayload, {
-            expiresIn: this.configService.get<number>('JWT_EXPIRATION'),
-        });
+        return this.jwtService.sign(tokenPayload);
     }
 
     async login(user: UserDto, response: Response<any, Record<string, any>>): Promise<void> {
 
         // 驗證使用者
-        const dbUserId: string = await this.verifyUser(user);
+        const dbUser: UserEntity = await this.verifyUser(user);
 
-        const token: string = this.genToken(dbUserId);
+        const token: string = await this.genToken(dbUser.userId, dbUser.userName);
+
+        const d: Date = new Date(new Date(this.clockService.getDateTime()).getTime() + this.configService.get<number>('JWT_EXPIRATION') * 1000);
 
         response.cookie('Authentication', token, {
             httpOnly: true,
-            expires: new Date(new Date().getTime() + this.configService.get<number>('JWT_EXPIRATION') * 1000),
+            expires: d,
         });
     }
 

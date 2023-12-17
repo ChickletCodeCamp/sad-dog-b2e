@@ -11,8 +11,11 @@ import {
 import { UpdateUserDto, CreateUserDto, UserDto } from './dtos';
 import { UserServiceInterface } from './interfaces/user.service.interface';
 import { ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/auth/decorator/roles.decorator';
+import { Role } from 'src/auth/enums/role.enum';
 
 @ApiTags('user')
+@Roles(Role.Admin, Role.Manager)
 @Controller('user')
 export class UserController {
     constructor(

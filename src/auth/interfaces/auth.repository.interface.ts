@@ -7,4 +7,10 @@ export interface AuthRepositoryInterface {
      * @param email 信箱
      */
     getUserByEmail(email: string): Promise<UserEntity>;
+
+    /**使用UserId查詢權限
+     * 
+     * @param userId 
+     */
+    getRolesByUserId(userId: string): Promise<string[]>;
 }
