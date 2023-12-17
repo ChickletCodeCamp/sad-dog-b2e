@@ -1,4 +1,4 @@
-import { UserDto } from '../dtos';
+import { GetUserDto, UserDto } from '../dtos';
 import { Response } from 'express';
 
 
@@ -15,5 +15,18 @@ export interface AuthServiceInterface {
      * 
      * @param response session
      */
-    logout(response: Response): Promise<void>;
+    logout(response: Response): void;
+
+    /**驗證
+     * 
+     * @param email 信箱
+     * @param password 密碼
+     */
+    validateUser(email: string, password: string): Promise<void>;
+
+    /**取得使用者資訊
+     * 
+     * @param userId 
+     */
+    getUserById(userId: string): Promise<GetUserDto>;
 }

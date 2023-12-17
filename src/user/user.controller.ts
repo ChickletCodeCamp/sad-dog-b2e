@@ -10,7 +10,9 @@ import {
 } from '@nestjs/common';
 import { UpdateUserDto, CreateUserDto, UserDto } from './dtos';
 import { UserServiceInterface } from './interfaces/user.service.interface';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
     constructor(

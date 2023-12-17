@@ -1,10 +1,11 @@
-import { Controller, Inject, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthServiceInterface } from './interfaces';
 import { UserDto } from './dtos';
-import { CurrentUser } from './current-user.decorator';
 import { JwtAuthGuard, LocalAuthGuard } from './guards';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
     constructor(
@@ -12,18 +13,19 @@ export class AuthController {
         private readonly authService: AuthServiceInterface
     ) { }
 
-    @UseGuards(LocalAuthGuard)
+    @ApiBody({ type: UserDto })
+    // @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(
-        @CurrentUser() user: UserDto,
+        @Body() user: UserDto,
         @Res({ passthrough: true }) response: Response,
     ) {
         await this.authService.login(user, response);
         response.send(user);
     }
 
-    @UseGuards(JwtAuthGuard)
-    async validateUser({ user }: { user: UserDto; }) {
-        return user;
+    @Get('logout')
+    logout(@Res({ passthrough: true }) response: Response,) {
+        this.authService.logout(response);
     }
 }

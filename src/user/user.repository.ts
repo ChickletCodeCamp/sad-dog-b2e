@@ -63,7 +63,17 @@ export class UserRepository implements UserRepositoryInterface {
         // 2. 將資料寫入 db（將資料更新到資料庫中）
         const result = await queryBuilder
             .update<UserEntity>(UserEntity, data) // 更新資料
-            .where(this.userSchema.tableName + '.userId = :userId', { userId: data.userId }) // 指定更新條件（根據 id）
+            .set({
+                fullName: data.fullName,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                userName: data.userName,
+                sex: data.sex,
+                age: data.age,
+                updateTime: data.updateTime,
+                updateUserId: userId,
+            })
+            .where(this.userSchema.tableName + '."userId" = :userId', { userId: userId }) // 指定更新條件（根據 id）
             .returning(this.userSchema.schema) // 返回的資料模型或結構
             .updateEntity(true) // 更新實體（true表示執行更新操作）
             .execute()
