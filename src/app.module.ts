@@ -7,6 +7,9 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { UuidModule } from '@app/uuid/uuid.module';
 import { ClockModule } from '@app/clock/clock.module';
+import { BcryptModule } from '@app/bcrypt/bcrypt.module';
+import { AuthModule } from './auth/auth.module';
+import { DogModule } from './dog/dog.module';
 
 @Module({
   imports: [
@@ -19,14 +22,16 @@ import { ClockModule } from '@app/clock/clock.module';
     }),
     TypeOrmModule.forRootAsync({
       useFactory(configService: ConfigService) {
-        const IS_DB_SSL_MODE = configService.getOrThrow<boolean>(
+        const IS_DB_SSL_MODE = configService.getOrThrow<string>(
           'IS_DB_SSL_MODE',
-          false,
+          'false',
         );
+        //const IS_DB_SSL_MODE = false;
+
         return {
-          ssl: IS_DB_SSL_MODE, // 是否要使用 ssl 連線，一般正式連線會啟用
+          ssl: IS_DB_SSL_MODE == 'true', // 是否要使用 ssl 連線，一般正式連線會啟用
           extra: {
-            ssl: IS_DB_SSL_MODE ? { rejectUnauthorized: false } : null,
+            ssl: (IS_DB_SSL_MODE == 'true') ? { rejectUnauthorized: false } : null,
             poolSize: 5,
             idleTimeoutMillis: 3600000,
           },
@@ -41,6 +46,9 @@ import { ClockModule } from '@app/clock/clock.module';
     UserModule,
     ClockModule,
     UuidModule,
+    BcryptModule,
+    AuthModule,
+    DogModule
   ],
   controllers: [AppController],
   providers: [AppService],

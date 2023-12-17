@@ -10,7 +10,9 @@ import {
 } from '@nestjs/common';
 import { UpdateUserDto, CreateUserDto, UserDto } from './dtos';
 import { UserServiceInterface } from './interfaces/user.service.interface';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
     constructor(
@@ -25,12 +27,12 @@ export class UserController {
 
     @Post()
     async create(@Body() createCatDto: CreateUserDto) {
-        return await this.userService.createUser(createCatDto, '');
+        return await this.userService.createUser(createCatDto, 'f7541155-a4ff-4ca2-bfc5-a82ad98e2e86');// TODO: get userId
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateCatDto: UpdateUserDto) {
-        return await this.userService.updaterUser(id, updateCatDto, '');
+        return await this.userService.updaterUser(id, updateCatDto, 'f7541155-a4ff-4ca2-bfc5-a82ad98e2e86');// TODO: get userId
     }
 
     @Delete(':id')

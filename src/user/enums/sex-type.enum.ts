@@ -1,4 +1,4 @@
 export enum SexType {
     Boy = 'Boy',
-    Girl = 'Girl'
+    Girl = "Girl"
 }
