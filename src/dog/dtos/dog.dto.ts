@@ -20,6 +20,12 @@ export class DogDto {
     heart: number;
 
     @ApiProperty({
+        description: '等級',
+        default: 1
+    })
+    lv: number;
+
+    @ApiProperty({
         description: '品種',
         maxLength: 10
     })

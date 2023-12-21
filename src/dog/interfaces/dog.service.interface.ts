@@ -1,4 +1,4 @@
-import { CreateDogDto, DogDto } from "../dtos";
+import { CreateDogDto, DogDto, UpdateDogDto } from "../dtos";
 
 export interface DogServiceInterface {
 
@@ -13,4 +13,10 @@ export interface DogServiceInterface {
      * @param dog 
      */
     createNewDog(dog: CreateDogDto): Promise<DogDto>;
+
+    /**改狗名
+     * 
+     * @param dog 
+     */
+    updateDogName(dog: UpdateDogDto): Promise<DogDto>;
 }

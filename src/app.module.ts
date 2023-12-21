@@ -10,6 +10,8 @@ import { ClockModule } from '@app/clock/clock.module';
 import { BcryptModule } from '@app/bcrypt/bcrypt.module';
 import { AuthModule } from './auth/auth.module';
 import { DogModule } from './dog/dog.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/guard/roles.guard';
 
 @Module({
   imports: [
@@ -51,6 +53,12 @@ import { DogModule } from './dog/dog.module';
     DogModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard
+    }
+  ],
 })
 export class AppModule { }

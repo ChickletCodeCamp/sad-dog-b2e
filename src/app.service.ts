@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { json } from 'stream/consumers';
 
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello Sad Dog!';
+    return JSON.stringify('Hello Sad Dog!');
   }
 }
