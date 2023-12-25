@@ -15,7 +15,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/auth/enums/role.enum';
 
 @ApiTags('user')
-@Roles(Role.Admin, Role.Manager)
+// @Roles(Role.Admin, Role.Manager)
 @Controller('user')
 export class UserController {
     constructor(
